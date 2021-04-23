@@ -1,0 +1,171 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"    
+    x:Class="BoqiangH5.OneClickFactorySetting"
+    Title="{DynamicResource OneClickFactorySettingTitle}" SizeToContent="Manual" 
+    WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="650" Width="750" >
+    
+    <Grid x:Name="selectGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="{DynamicResource AdjustParam}" Margin="15,10" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{DynamicResource synTimeSpan}"  Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbSynTimeSpan" Width="120"  Grid.Column="1" Grid.Row="0" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource componentModel}"  Grid.Column="2" Grid.Row="0" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbComponentModel" Width="120"  Grid.Column="3" Grid.Row="0" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource voltageBase}"  Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbVoltageBase" Width="120"  Grid.Column="1" Grid.Row="1" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource voltageError}"  Grid.Column="2" Grid.Row="1" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbVoltageError" Width="120"  Grid.Column="3" Grid.Row="1" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource humidityError}"  Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbHumidityError" Width="120"  Grid.Column="1" Grid.Row="2" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource temperatureError}"  Grid.Column="2" Grid.Row="2" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbTemperatureError" Width="120"  Grid.Column="3" Grid.Row="2" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource powerCurrentBase}"  Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbPowerCurrentBase" Width="120"  Grid.Column="1" Grid.Row="3" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource powerCurrentError}"  Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbPowerCurrentError" Width="120"  Grid.Column="3" Grid.Row="3" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource resistanceVoltageBase}"  Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbResistanceVoltageBase" Width="120"  Grid.Column="1" Grid.Row="4" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+
+                <Label Content="{DynamicResource resistanceVoltageError}"  Grid.Column="2" Grid.Row="4" Style="{StaticResource LabelStyle}"/>
+                <TextBox Name="tbResistanceVoltageError" Width="120"  Grid.Column="3" Grid.Row="4" Margin="5 0 5 0" Style="{StaticResource style_TextBox}" />
+            </Grid>
+
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="{DynamicResource ConfigParam}"  Margin="15,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="40"/>
+
+                </Grid.RowDefinitions>
+
+                <CheckBox Name="chbIsAdjustSOC" Content="{DynamicResource socAdjust}" Grid.Column="0" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{DynamicResource socAdjustValue}" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Name="tbSocAdjustValue"  Grid.Column="1"  Grid.Row="0" Width="50" Margin="5 0 0 0" Style="{StaticResource style_TextBox}" />
+                </Grid>
+
+
+                <CheckBox Name="chbIsZeroAdjust" Content="{DynamicResource zeroCurrentAdjust}" Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Name="chbIs10AAdjust" Content="{DynamicResource currentAdjust}" Grid.Column="3" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Name="chbIsRTCAdjust" Content="{DynamicResource rtcAdjust}" Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+
+                <CheckBox Name="chbIsCheckVoltage" Content="{DynamicResource voltageCheck}" Grid.Column="0" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/> 
+                <CheckBox Name="chbIsCheckTemperature" Content="{DynamicResource temperatureCheck}" Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Name="chbIsCheckHumidity" Content="{DynamicResource checkHumidity}" Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+                <CheckBox Name="chbIsCheckEeprom" Content="{DynamicResource checkEeprom}" Grid.Column="3" Grid.Row="1" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Visibility="Hidden"/>
+                <CheckBox Name="chbIsCheckMcu" Content="{DynamicResource checkMcu}" Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+
+                <CheckBox Name="chbIsEepromWrite" Content="{DynamicResource eepromWrite}" Grid.Column="0" Grid.Row="2" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label  Content="{DynamicResource eepromFile}" Grid.Column="0" Grid.Row="2"  Style="{StaticResource LabelStyle}"/>
+                    <TextBox Name="tbEepromFile"  Grid.Column="1" Grid.Row="2" Width="480" Grid.ColumnSpan="3" Style="{StaticResource style_TextBox}" IsReadOnly="True"  Margin="5,0,0,0" TextWrapping="Wrap"/>
+                    <Button Grid.Column="2" Grid.Row="2" Content="{DynamicResource fileSelect}" Style="{StaticResource ButtonStyle}"  Click="EepromFileSelect_Clicked" Width="60" Height="20" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                </Grid>
+
+                <CheckBox Name="chbIsMCUWrite" Content="{DynamicResource mcuWrite}" Grid.Column="4" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label  Content="{DynamicResource mcuFile}" Grid.Column="0" Grid.Row="3"  Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Column="1" Name="tbMCUFile" Grid.Row="3" Width="480" Grid.ColumnSpan="3" Style="{StaticResource style_TextBox}" IsReadOnly="True"  Margin="5,0,0,0" TextWrapping="Wrap"/>
+                    <Button Grid.Column="2" Grid.Row="3" Content="{DynamicResource fileSelect}" Style="{StaticResource ButtonStyle}" Click="McuFileSelect_Clicked" Width="60" Height="20" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                </Grid>
+
+                <Button Grid.Column="0" Grid.Row="4" Content="{DynamicResource selectAll}" Style="{StaticResource ButtonStyle}" Click="SelectAll_Clicked" Width="60" Height="20" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                <CheckBox Name="chbIsShallowSleep" Content="{DynamicResource shallowSleep}" Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Name="chbIsDeepSleep" Content="{DynamicResource deepSleep}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Label  Content="{DynamicResource producedDate}" Grid.Column="2" Grid.Row="1"  Style="{StaticResource LabelStyle}"/>
+                <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="天" Grid.Column="1" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Name="tbProducedDateError"  Grid.Column="0"  Grid.Row="0" Width="50" Margin="5 0 0 0" Style="{StaticResource style_TextBox}" />
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label  Content="{DynamicResource waterResistance}" Grid.Column="0"  Style="{StaticResource LabelStyle}"/>
+                    <TextBox Name="tbMinResistance"  Grid.Column="1" Width="75" Margin="5 0 0 0" Style="{StaticResource style_TextBox}" />
+                    <Label  Content="KΩ" Grid.Column="2"  Style="{StaticResource LabelStyle}" HorizontalAlignment="Left"/>
+                    <Label  Content="—————" Grid.Column="3"  Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
+                    <TextBox Name="tbMaxResistance"  Grid.Column="4" Width="75" Margin="5 0 0 0" Style="{StaticResource style_TextBox}" />
+                    <Label  Content="KΩ" Grid.Column="5"  Style="{StaticResource LabelStyle}" HorizontalAlignment="Left"/>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="{DynamicResource scOK}" Style="{StaticResource ButtonStyle}"
+                             Click="OK_Click" IsEnabled="True"/>
+            <Button Grid.Column="2" Content="{DynamicResource scCanel}"  Style="{StaticResource ButtonStyle}"
+                             Click="Canel_Click" IsEnabled="True"/>
+        </Grid>
+
+    </Grid>
+</Window>

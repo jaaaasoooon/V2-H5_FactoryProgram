@@ -1,0 +1,54 @@
+﻿<Window x:Class="BoqiangH5.AdjustSOCWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BoqiangH5"
+        mc:Ignorable="d"
+        Title="SOC校准" Height="140" Width="320" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="SOC校准" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+                <Button Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Width="20" Height="20" Click="btnClose_Clicked"></Button>
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="30*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0" Content="当前SOC值：" ></Label>
+                <TextBox Name="tbCurrentSOC"  Style="{StaticResource TextBoxStyle}" Grid.Row="0" Grid.Column="1"  IsReadOnly="True"/>
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Content="校准SOC值：" ></Label>
+                <TextBox Name="tbSOC" Style="{StaticResource TextBoxStyle}" Grid.Row="1" Grid.Column="1"  />
+                <Button Name="btnAdjust"  Content="校准" HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="btnAdjust_Clicked"></Button>
+            </Grid>
+        </Border>        
+        <!--<Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="btnAdjust"  Content="校准" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="btnClose_Clicked"></Button>
+            </Grid>
+        </Border>-->
+    </Grid>
+</Window>

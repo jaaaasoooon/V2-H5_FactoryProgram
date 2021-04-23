@@ -1,0 +1,256 @@
+﻿<UserControl x:Class="BoqiangH5.UserCtrlBqBmsInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoqiangH5"
+             mc:Ignorable="d" Name="ucBqBmsInfo"
+             d:DesignHeight="600" d:DesignWidth="800" Loaded="ucBqBmsInfo_Loaded" >
+    <UserControl.Resources>
+        <local:BalanceStatusToImgConverter x:Key="BalanceImgConverter"/>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.ColumnSpan="3" BorderThickness="1"  BorderBrush="Black">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="60*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"></RowDefinition>
+                    <RowDefinition Height="40*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Content="深休眠" Grid.Row="0" Grid.Column="0" Style="{StaticResource ButtonStyle}" Name="btnDeepSleep" Width="60" Click="btnDeepSleep_Click"/>
+                <Button Content="浅休眠" Grid.Row="0" Grid.Column="1" Style="{StaticResource ButtonStyle}" Name="btnShallowSleep" Width="60" Click="btnShallowSleep_Click"/>
+                <!--<Label Content="校准值:" Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelStyle}" ></Label>
+                <TextBox Grid.Column="3" Grid.Row="0" Style="{StaticResource TextBoxStyle}" Name="tbSoc" IsReadOnly="True" Text="50" Width="40"></TextBox>-->
+                <Button Content="SOC校准" Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonStyle}" Name="btnAdjustSOC" Width="60" Click="btnAdjustSOC_Click"/>
+                <Button Content="零点校准" Grid.Row="0" Grid.Column="2" Style="{StaticResource ButtonStyle}" Name="btnAdjustZero" Width="60" Click="btnAdjustZero_Click"/>
+                <Button Content="-10A校准" Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Name="btnAdjust10A" Width="60" Click="btnAdjust10A_Click"/>
+                <!--<Label Content="MCU:" Grid.Row="0" Grid.Column="6" Style="{StaticResource LabelStyle}"></Label>
+                <TextBox Grid.Column="7" Grid.Row="0" Style="{StaticResource TextBoxStyle}" Name="tbMcuFileName" IsReadOnly="True" TextWrapping="Wrap" Height="40"></TextBox>-->
+                <Button Content="MCU写入" Grid.Row="1"  Grid.Column="3" Style="{StaticResource ButtonStyle}" Name="btnWriteMcu" Width="60" Click="btnWriteMcu_Click"/>
+                <!--<Label Content="EEPROM:" Grid.Row="1" Grid.Column="6" Style="{StaticResource LabelStyle}"></Label>
+                <TextBox Grid.Column="7" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Name="tbEepromFileName" IsReadOnly="True" TextWrapping="Wrap" Height="40"></TextBox>-->
+                <Button Content="EEPROM写入" Grid.Row="0"  Grid.Column="4" Style="{StaticResource ButtonStyle}" Name="btnWriteEeprom" Width="80" Click="btnWriteEeprom_Click"/>
+                <Button Content="一键出厂配置" Grid.Row="0" Grid.Column="5" Style="{StaticResource ButtonStyle}" Name="btnOneClickFactory" Width="80" Click="btnOneClickFactory_Click"/>
+                <Button Content="上电"  Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonStyle}" Name="btnPowerON" Width="60" Click="btnPowerON_Click"/>
+                <Button Content="下电"  Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonStyle}" Name="btnPowerOFF" Width="60" Click="btnPowerOFF_Click"/>
+
+                <Button Content="一键出厂检验" Grid.Row="1" Grid.Column="5" Style="{StaticResource ButtonStyle}" Name="btnOneClickFactoryCheck" Width="80" Click="btnOneClickFactoryCheck_Click"/>
+                <Label  Grid.Row="0" Grid.RowSpan="2" Grid.Column="6" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" Name="labResult" Background="LightGray" Content="待测试"></Label>
+                <!--<Grid Grid.Row="0" Grid.Column="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="功耗测试"  Grid.Column="0" Style="{StaticResource ButtonStyle}" Name="btnPowerTest" Width="60" Click="btnPowerTest_Click"/>
+                    <Ellipse Grid.Column="1" Width="20" Height="20" Name="powerResult" ToolTip="功耗测试结果，绿色表示通过，红色表示不通过">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="LightGray"  />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="内阻测试"  Grid.Column="0" Style="{StaticResource ButtonStyle}" Name="btnResistanceTest" Width="60" Click="btnResistanceTest_Click"/>
+                    <Ellipse Grid.Column="1" Width="20" Height="20"  Name="resistanceResult" ToolTip="内阻测试结果，绿色表示通过，红色表示不通过">
+                        <Ellipse.Fill>
+                            <SolidColorBrush  Color="LightGray"  />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>-->
+                <Button Content="充放电测试" Grid.Row="1" Grid.Column="4" Style="{StaticResource ButtonStyle}" Name="btnChargeOrDischarge" Width="80" Click="btnChargeOrDischarge_Click"/>
+                <RichTextBox Grid.Column="7"  Grid.RowSpan="2" Margin="5" Name="rtbMsg" VerticalScrollBarVisibility="Auto"  IsReadOnly="True" >
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240*"/>
+                    <ColumnDefinition Width="240*"/>
+                    <ColumnDefinition Width="300*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                    <DataGrid Name="dgBqBmsInfo" CanUserAddRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" FontSize="14" Margin="0,10"  MouseLeftButtonDown="dgBqBmsInfo_MouseLeftDown" RowHeaderWidth="0" ScrollViewer.CanContentScroll="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="{DynamicResource dxgacIndex}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Width="50"  IsReadOnly="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Label Content="{Binding Path=Index}" HorizontalAlignment="Center" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="{DynamicResource dxgacName}"  HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=Description}" Width="150*"  IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="{DynamicResource dxgacValue}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=StrValue}" Width="80*" IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                            <DataGridTextColumn Header="{DynamicResource dxgacunit}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=Unit}" Width="60*"  IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300*"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="dgBqBmsCellVoltage" Grid.Row="0" CanUserAddRows="False" CanUserSortColumns="False" AutoGenerateColumns="False" FontSize="14" Margin="0,10" RowHeaderWidth="0" ScrollViewer.CanContentScroll="False">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="{DynamicResource dxgacIndex}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Width="50"  IsReadOnly="True" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <Label Content="{Binding Path=Index}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{DynamicResource dxgacName}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=Description}" Width="100*"  IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                                <DataGridTextColumn Header="{DynamicResource dxgacValue}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=StrValue}" Width="60*" IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                                <DataGridTextColumn Header="{DynamicResource dxgacunit}" HeaderStyle="{StaticResource DataGridHeaderStyle}" Binding="{Binding Path=Unit}" Width="40*"  IsReadOnly="true" ElementStyle="{StaticResource DataGridTextColumnCenterStyle}"/>
+                                <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeaderStyle}" Width="60*" Header="{DynamicResource dxgacbalance}">
+                                    <!--<DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <Label Content="均衡" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>-->
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=BalanceStat,Converter={StaticResource ResourceKey=BalanceImgConverter}}" Width="20" Height="20"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Row="1">
+                            <GroupBox Header="系统参数信息" Margin="1,0" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                        <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <local:UcBattery x:Name="ucBattery" Margin="0 10 0 10" Grid.Column="0"></local:UcBattery>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40*"></RowDefinition>
+                                            <RowDefinition Height="40*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80*"></ColumnDefinition>
+                                            <ColumnDefinition Width="80*"></ColumnDefinition>
+                                            <ColumnDefinition Width="30*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="总电压：" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0"></Label>
+                                        <TextBox Name="tbVoltage" Style="{StaticResource TextBoxStyle}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"></TextBox>
+                                        <Label Content="实时电流：" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"></Label>
+                                        <TextBox Name="tbCurrent" Style="{StaticResource TextBoxStyle}" Grid.Row="1" Grid.Column="1" IsReadOnly="True"></TextBox>
+                                        <Label Content="mV" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"></Label>
+                                        <Label Content="mA" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left"></Label>
+                                    </Grid>
+                                </Grid>
+                            </GroupBox>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="2">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150*"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="150*"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <GroupBox Header="系统状态" Margin="1,0" Grid.Row="0">
+                            <ListBox Name="listBoxSysStatus" Margin="5,2"  Style="{StaticResource ListBoxItemBorderStyle}" DisplayMemberPath="BitInfo" BorderThickness="1" ScrollViewer.CanContentScroll="False">
+                                <ListBox.Template>
+                                    <ControlTemplate TargetType="{x:Type ListBox}">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True" />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ListBox.Template>
+                            </ListBox>
+                        </GroupBox>
+
+                        <GroupBox Header="电池状态" Margin="1,0,1,1" Grid.Row="2">
+                            <ListBox Name="listBoxBatStatus" Margin="5,2"  Style="{StaticResource ListBoxItemBorderStyle}" DisplayMemberPath="BitInfo" BorderThickness="1" ScrollViewer.CanContentScroll="False">
+                                <ListBox.Template>
+                                    <ControlTemplate TargetType="{x:Type ListBox}">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True" />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ListBox.Template>
+                            </ListBox>
+                        </GroupBox>
+
+                        <GridSplitter Grid.Row="1" VerticalAlignment="Stretch" Style="{StaticResource HorGridSplitterStyle}" Margin="0"/>
+
+                        <Border Grid.Row="3" Margin="3" BorderThickness="1" BorderBrush="#FFD5DFE5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                                    <ColumnDefinition Width="200*"></ColumnDefinition>
+                                    <!--<ColumnDefinition Width="80"></ColumnDefinition>-->
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="10 0 0 0" Content="请输入条码：" Foreground="Blue" FontSize="18" Style="{StaticResource LabelStyle}"></Label>
+                                <TextBox  Name="tbSn" Grid.Column=" 1" Margin="10 0 10 0" Foreground="Blue" FontSize="18" ToolTip="请输入16位的条码" 
+                               Height="40" BorderThickness="1" BorderBrush="Blue" Style="{StaticResource TextBoxStyle}" KeyDown="tbSn_KeyDown"></TextBox>
+                                <!--<Button Content="写入"  Grid.Column="2" Width="60" Style="{StaticResource ButtonStyle}" Name="btnWriteMcuPara" Click="btnWriteMcuPara_Click" />-->
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="4" Margin="3" BorderThickness="1" BorderBrush="#FFD5DFE5">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <!--<ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="80"/>-->
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <!--<Button Content="深休眠"  Grid.Column="0" Style="{StaticResource ButtonStyle}" Name="btnDeepSleep" Width="60" Click="btnDeepSleep_Click"/>
+                    <Button Content="浅休眠"  Grid.Column="1" Style="{StaticResource ButtonStyle}" Name="btnShallowSleep" Width="60" Click="btnShallowSleep_Click"/>-->
+                                <!--<Label Name="labInterval" Content="消息记录间隔：" Grid.Column="3" Style="{StaticResource LabelStyle}" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Name="cbInterval" Grid.Column="4" Style="{StaticResource ComboxStyle}" Width="60" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <ComboBoxItem Content="1S" />
+                        <ComboBoxItem Content="2S" />
+                        <ComboBoxItem Content="3S" />
+                        <ComboBoxItem Content="4S" />
+                        <ComboBoxItem Content="5S" />
+                    </ComboBox>-->
+                                <CheckBox Name="cbIsSaveBms" Content="记录" Grid.Column="4" Width="60" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="false" Click="cbIsSaveBms_Click"  />
+                                <!--<CheckBox Name="cbIsUpdate" Content="刷新数据" Grid.Column="4" Width="80" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cbIsUpdate_Click" IsChecked="True" />-->
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Style="{StaticResource VerGridSplitterStyle}" Margin="0"/>
+    </Grid>
+</UserControl>
